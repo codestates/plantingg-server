@@ -1,13 +1,18 @@
-// 상태메시지 수정버튼(연필 아이콘) 클릭해서 내용을 적으면 서버에 저장
-// 수정하면 또 변경해서 저장
+// 상태메시지 입력하면 서버에 저장
 
 const { user } = require('../../models');
 
 module.exports = {
     post: async (req, res) => {
+        const { statusMessage } = req.body;
         const statusMessage = await user.create({
-            where: { statusMessage: req.body.statusMessage }
-        })
-        // if
+            where: { statusMessage }
+        });
+        
+        if (!statusMessage) {
+            res.status(400).send({ message: "내용을 입력하세요." });
+        } else {
+            res.status(200).send(statusMessage);
+        }
     }
 }
