@@ -42,7 +42,7 @@ app.use("/signup", userRouter);
 // app.use("/post", postRouter);
 // app.use("/plant", plantRouter);
 
-// // https 프로토콜 사용
+// https 프로토콜 사용
 // const server = https
 //   .createServer(
 //     {
