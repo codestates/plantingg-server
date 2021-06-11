@@ -8,7 +8,7 @@ const cors = require("cors");
 const logger = require("morgan");
 const checkToken = require("./middlewares/checkToken");
 
-const port = 3000;
+const port = 4000;
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "https://plantingg.com",
+    origin: "https://localhost:3000",
     method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
@@ -36,6 +36,9 @@ app.get("/", (req, res) => {
   res.send("GET request to the homepage");
 });
 app.use("/user", userRouter);
+app.use("/signin", userRouter);
+app.use("/signup", userRouter);
+
 // app.use("/post", postRouter);
 // app.use("/plant", plantRouter);
 
