@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 require("./models");
 
-const https = require("https");
+// const https = require("https");
 const fs = require("fs");
 const cors = require("cors");
 const logger = require("morgan");
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "https://localhost:3000",
+    origin: "http://localhost:3000",
     method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
@@ -43,16 +43,20 @@ app.use("/signup", userRouter);
 // app.use("/plant", plantRouter);
 
 // https 프로토콜 사용
-const server = https
-  .createServer(
-    {
-      key: fs.readFileSync(__dirname + "/key.pem", "utf-8"),
-      cert: fs.readFileSync(__dirname + "/cert.pem", "utf-8"),
-    },
-    app
-  )
-  .listen(port, () => {
-    console.log(`server listening on ${port}`);
-  });
+// const server = https
+//   .createServer(
+//     {
+//       key: fs.readFileSync(__dirname + "/key.pem", "utf-8"),
+//       cert: fs.readFileSync(__dirname + "/cert.pem", "utf-8"),
+//     },
+//     app
+//   )
+//   .listen(port, () => {
+//     console.log(`server listening on ${port}`);
+//   });
 
-module.exports = server;
+app.listen(port, () => {
+  console.log(`server listening on ${port}`);
+});
+
+module.exports = app;
