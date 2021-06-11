@@ -8,7 +8,7 @@ const cors = require("cors");
 const logger = require("morgan");
 const checkToken = require("./middlewares/checkToken");
 
-const port = 4000;
+const port = process.env.PORT ?? 4000;
 
 const app = express();
 
