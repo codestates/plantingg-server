@@ -8,7 +8,7 @@ const cors = require("cors");
 const logger = require("morgan");
 const checkToken = require("./middlewares/checkToken");
 
-const port = 3000;
+const port = 4000;
 
 const app = express();
 
@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "https://plantingg.com",
-    method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    origin: "https://localhost:3000",
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
@@ -35,7 +35,10 @@ const userRouter = require("./routes/user");
 app.get("/", (req, res) => {
   res.send("GET request to the homepage");
 });
-app.use("/user", userRouter);
+app.get("/user", userRouter);
+app.post("/signin", userRouter)
+app.post("/signup", userRouter)
+app.post("/signout", userRouter)
 // app.use("/post", postRouter);
 // app.use("/plant", plantRouter);
 
@@ -43,8 +46,8 @@ app.use("/user", userRouter);
 const server = https
   .createServer(
     {
-      key: fs.readFileSync(__dirname + "/key.pem", "utf-8"),
-      cert: fs.readFileSync(__dirname + "/cert.pem", "utf-8"),
+      key: fs.readFileSync(__dirname + "/key.pem", "utf8"),
+      cert: fs.readFileSync(__dirname + "/cert.pem", "utf8"),
     },
     app
   )
