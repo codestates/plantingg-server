@@ -35,14 +35,13 @@ const userRouter = require("./routes/user");
 app.get("/", (req, res) => {
   res.send("GET request to the homepage");
 });
+
 app.use("/user", userRouter);
-app.use("/signin", userRouter);
-app.use("/signup", userRouter);
 
 // app.use("/post", postRouter);
 // app.use("/plant", plantRouter);
 
-// https 프로토콜 사용
+// // https 프로토콜 사용
 // const server = https
 //   .createServer(
 //     {
@@ -55,8 +54,8 @@ app.use("/signup", userRouter);
 //     console.log(`server listening on ${port}`);
 //   });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`server listening on ${port}`);
 });
 
-module.exports = app;
+module.exports = server;
