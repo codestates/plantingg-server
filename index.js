@@ -2,7 +2,6 @@ const express = require("express");
 require("dotenv").config();
 require("./models");
 
-// const https = require("https");
 const fs = require("fs");
 const cors = require("cors");
 const logger = require("morgan");
@@ -29,7 +28,7 @@ app.use(logger("dev"));
 
 // express 라우팅
 const userRouter = require("./routes/user");
-// const postRouter = require("./routes/post");
+const postRouter = require("./routes/post");
 // const plantRouter = require("./routes/plant");
 
 app.get("/", (req, res) => {
@@ -37,22 +36,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
-
-// app.use("/post", postRouter);
+app.use("/post", postRouter);
 // app.use("/plant", plantRouter);
-
-// // https 프로토콜 사용
-// const server = https
-//   .createServer(
-//     {
-//       key: fs.readFileSync(__dirname + "/key.pem", "utf-8"),
-//       cert: fs.readFileSync(__dirname + "/cert.pem", "utf-8"),
-//     },
-//     app
-//   )
-//   .listen(port, () => {
-//     console.log(`server listening on ${port}`);
-//   });
 
 const server = app.listen(port, () => {
   console.log(`server listening on ${port}`);
