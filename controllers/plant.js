@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const { plant } = require("../models");
-=======
-const { plant } = require("../../models");
->>>>>>> cad006cd92be485d42a61317223d32ad91e8dbab
+const { Plant } = require("../models");
 
 module.exports = {
   create: async (req, res) => {
@@ -11,7 +7,7 @@ module.exports = {
       res.status(400).send({ message: "이름과 사진을 입력하세요." });
     }
 
-    const uploadPlant = await plant.create({
+    const uploadPlant = await Plant.create({
       name,
       image,
     });
@@ -24,7 +20,7 @@ module.exports = {
       res.status(400).send({ message: "변경사항이 없습니다." });
     }
 
-    const updatePlant = await plant.update(
+    const updatePlant = await Plant.update(
       {
         name,
         image,
@@ -37,7 +33,7 @@ module.exports = {
   },
 
   delete: async (req, res) => {
-    await plant.destroy({
+    await Plant.destroy({
       where: { id: req.body.id },
     });
   },
