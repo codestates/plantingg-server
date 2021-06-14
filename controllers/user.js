@@ -33,10 +33,6 @@ module.exports = {
       where: { statusMessage },
     });
     res.status(200).send(createStatusMessage);
-
-    if (!statusMessage) {
-      res.status(400).send({ message: "내용을 입력하세요." });
-    }
   },
 
   userEdit: async (req, res) => {
