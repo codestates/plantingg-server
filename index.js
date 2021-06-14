@@ -25,7 +25,6 @@ app.use(logger("dev"));
 
 // express 라우팅
 const userRouter = require("./routes/user");
-const authRouter = require("./routes/auth");
 const postRouter = require("./routes/post");
 // const plantRouter = require("./routes/plant");
 
@@ -34,7 +33,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
-app.use("/auth", authRouter);
 app.use("/post", postRouter);
 // app.use("/plant", plantRouter);
 

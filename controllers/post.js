@@ -1,28 +1,16 @@
-const { Post } = require("../models");
+const { post } = require("../models");
 
 module.exports = {
-  read: async (req, res) => {
-    const { posts } = req.body;
-    if (!posts) {
-      res.status(400).send({ message: "게시물이 없습니다." });
-    }
-    const readPost = await Post.findOne({
-      where: {},
-    });
-    res.status(200).send(readPost);
-  },
-
   create: async (req, res) => {
     const { content, image, tag } = req.body;
     if (!content || !image || !tag) {
       res.status(400).send({ message: "내용을 입력하세요." });
     }
 
-    const uploadPost = await Post.create({
+    const uploadPost = await post.create({
       content,
       image,
       tag,
-      id: req.currentUserId,
     });
     res.status(200).send(uploadPost);
   },
@@ -33,7 +21,7 @@ module.exports = {
       res.status(400).send({ message: "변경사항이 없습니다." });
     }
 
-    const updatePost = await Post.update(
+    const updatePost = await post.update(
       {
         content,
         image,
@@ -47,7 +35,7 @@ module.exports = {
   },
 
   delete: async (req, res) => {
-    await Post.destroy({
+    await post.destroy({
       where: { id: req.body.id },
     });
   },
