@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
+// const checkToken = require("./middlewares/checkToken");
 
-const signIn = require("../controllers/user/signIn");
-const signUp = require("../controllers/user/signUp");
+const userController = require("../controllers/user");
 
 // * POST /user/signIn
-router.post("/signin", signIn.post);
+router.post("/signin", userController.signIn);
 
 // * POST /user/signUp
-router.post("/signup", signUp.post);
+router.post("/signup", userController.signUp);
 
 module.exports = router;
