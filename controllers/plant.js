@@ -1,4 +1,4 @@
-const { plant } = require("../../models");
+const { plant } = require("../models");
 
 module.exports = {
   create: async (req, res) => {
