@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+const { User } = require("../models");
+=======
 const { User } = require("../../models");
+>>>>>>> cad006cd92be485d42a61317223d32ad91e8dbab
 const jwt = require("jsonwebtoken");
 
 module.exports = {
@@ -13,6 +17,8 @@ module.exports = {
     }
   },
 
+<<<<<<< HEAD
+=======
   signIn: async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -64,20 +70,37 @@ module.exports = {
     }
   },
 
+>>>>>>> cad006cd92be485d42a61317223d32ad91e8dbab
   profileImage: async (req, res) => {
     const { profileImage } = req.body;
     if (!profileImage) {
       res.status(400).send({ message: "사진을 업로드하세요." });
     }
 
+<<<<<<< HEAD
+    const createProfileImage = await User.create({
+      profileImage,
+    });
+    res.status(200).send(createProfileImage);
+=======
     const profileImage = await User.create({
       profileImage,
     });
     res.status(200).send(profileImage);
+>>>>>>> cad006cd92be485d42a61317223d32ad91e8dbab
   },
 
   statusMessage: async (req, res) => {
     const { statusMessage } = req.body;
+<<<<<<< HEAD
+    if (!statusMessage) {
+      res.status(400).send({ message: "내용을 입력하세요." });
+    }
+    const createStatusMessage = await User.create({
+      where: { statusMessage },
+    });
+    res.status(200).send(createStatusMessage);
+=======
     const statusMessage = await User.create({
       where: { statusMessage },
     });
@@ -87,6 +110,7 @@ module.exports = {
     } else {
       res.status(200).send(statusMessage);
     }
+>>>>>>> cad006cd92be485d42a61317223d32ad91e8dbab
   },
 
   userEdit: async (req, res) => {

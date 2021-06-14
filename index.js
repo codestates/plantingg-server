@@ -5,7 +5,6 @@ require("./models");
 const fs = require("fs");
 const cors = require("cors");
 const logger = require("morgan");
-const checkToken = require("./middlewares/checkToken");
 
 const port = process.env.PORT ?? 4000;
 
@@ -16,13 +15,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://plantingg.s3-website.ap-northeast-2.amazonaws.com/",
     method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
-
-app.use(checkToken);
 
 app.use(logger("dev"));
 

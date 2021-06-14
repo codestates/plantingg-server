@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+const { plant } = require("../models");
+=======
 const { plant } = require("../../models");
+>>>>>>> cad006cd92be485d42a61317223d32ad91e8dbab
 
 module.exports = {
   create: async (req, res) => {
