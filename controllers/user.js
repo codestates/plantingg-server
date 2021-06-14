@@ -18,7 +18,6 @@ module.exports = {
     if (!profileImage) {
       res.status(400).send({ message: "사진을 업로드하세요." });
     }
-
     const createProfileImage = await User.create({
       profileImage,
     });
