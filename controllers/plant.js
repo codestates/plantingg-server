@@ -18,7 +18,6 @@ module.exports = {
       userId: req.currentUserId,
       name,
       image,
-      currentUserId: req.currentUserId,
     });
     res.status(200).send(uploadPlant);
   },
@@ -30,7 +29,6 @@ module.exports = {
         userId: req.currentUserId,
         name,
         image,
-        currentUserId: req.currentUserId,
       },
       {
         where: { id: req.body.id },
