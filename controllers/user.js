@@ -1,5 +1,4 @@
 const { User } = require("../models");
-const jwt = require("jsonwebtoken");
 
 module.exports = {
   userInfo: async (req, res) => {
@@ -14,24 +13,34 @@ module.exports = {
   },
 
   profileImage: async (req, res) => {
-    const { profileImage } = req.body;
-    if (!profileImage) {
+    const { image } = req.body;
+    if (!image) {
       res.status(400).send({ message: "사진을 업로드하세요." });
     }
-    const createProfileImage = await User.create({
-      profileImage,
-    });
+    const createProfileImage = await User.update(
+      {
+        profileImage: image,
+      },
+      {
+        where: { id: req.currentUserId },
+      }
+    );
     res.status(200).send(createProfileImage);
   },
 
   statusMessage: async (req, res) => {
-    const { statusMessage } = req.body;
-    if (!statusMessage) {
+    const { content } = req.body;
+    if (!content) {
       res.status(400).send({ message: "내용을 입력하세요." });
     }
-    const createStatusMessage = await User.create({
-      where: { statusMessage },
-    });
+    const createStatusMessage = await User.update(
+      {
+        statusMessage: content,
+      },
+      {
+        where: { id: req.currentUserId },
+      }
+    );
     res.status(200).send(createStatusMessage);
   },
 
@@ -47,7 +56,6 @@ module.exports = {
         where: { id: req.body.id },
       }
     );
-
     if (!username || !profileImage || !statusMessage) {
       res.status(400).send({ message: "변경사항이 없습니다." });
     } else {

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const checkToken = require("../middlewares/checkToken");
+
 const userController = require("../controllers/user");
+const checkToken = require("../middlewares/checkToken");
 
 router.use(checkToken);
 
@@ -9,12 +10,12 @@ router.use(checkToken);
 router.get("/userinfo", userController.userInfo);
 
 // * POST /user/profileImage
-router.post("/profileImage", userController.profileImage);
+router.post("/profileimage", userController.profileImage);
 
 // * POST /user/statusMessage
-router.post("/statusMessage", userController.statusMessage);
+router.post("/statusmessage", userController.statusMessage);
 
 // * PATCH /user/userEdit
-router.patch("/userEdit", userController.userEdit);
+router.patch("/useredit", userController.userEdit);
 
 module.exports = router;

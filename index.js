@@ -27,7 +27,7 @@ app.use(logger("dev"));
 const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
 const postRouter = require("./routes/post");
-// const plantRouter = require("./routes/plant");
+const plantRouter = require("./routes/plant");
 
 app.get("/", (req, res) => {
   res.send("GET request to the homepage");
@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/post", postRouter);
-// app.use("/plant", plantRouter);
+app.use("/plant", plantRouter);
 
 const server = app.listen(port, () => {
   console.log(`server listening on ${port}`);

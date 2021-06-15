@@ -1,6 +1,13 @@
 const { Plant } = require("../models");
 
 module.exports = {
+  read: async (req, res) => {
+    const list = await Plant.findOne({
+      where: { currentUserId: req.currentUserId },
+    });
+    res.status(200).send(list);
+  },
+
   create: async (req, res) => {
     const { name, image } = req.body;
     if (!name || !image) {
@@ -10,20 +17,18 @@ module.exports = {
     const uploadPlant = await Plant.create({
       name,
       image,
+      currentUserId: req.currentUserId,
     });
     res.status(200).send(uploadPlant);
   },
 
   update: async (req, res) => {
     const { name, image } = req.body;
-    if (!name || !image) {
-      res.status(400).send({ message: "변경사항이 없습니다." });
-    }
-
     const updatePlant = await Plant.update(
       {
         name,
         image,
+        currentUserId: req.currentUserId,
       },
       {
         where: { id: req.body.id },

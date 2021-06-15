@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -7,8 +8,7 @@ module.exports = async (req, res, next) => {
     res.status(401).send({ message: "권한이 없습니다." });
   } else {
     try {
-      const token = authorization.split(" ")[1];
-      const data = jwt.verify(token, process.env.ACCESS_SECRET);
+      const data = jwt.verify(authorization, process.env.ACCESS_SECRET);
       if (data.username !== undefined) {
         res.status(401).send({ message: "올바르지 않은 인증정보입니다." });
       }
