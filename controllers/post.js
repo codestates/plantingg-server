@@ -30,6 +30,7 @@ module.exports = {
         content,
         image,
         tag,
+        currentUserId: req.currentUserId,
       },
       {
         where: { id: req.body.id },
