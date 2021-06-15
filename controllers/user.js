@@ -46,14 +46,14 @@ module.exports = {
 
   userEdit: async (req, res) => {
     const { username, profileImage, statusMessage } = req.body;
-    const userInfo = await user.update(
+    const userInfo = await User.update(
       {
         username,
         profileImage,
         statusMessage,
       },
       {
-        where: { id: req.body.id },
+        where: { id: req.currentUserId },
       }
     );
     res.status(200).send(userInfo);
