@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const checkToken = require("../middlewares/checkToken");
 const userController = require("../controllers/user");
 const checkToken = require("../middlewares/checkToken");
 
@@ -17,5 +17,6 @@ router.post("/statusmessage", userController.statusMessage);
 
 // * PATCH /user/userEdit
 router.patch("/useredit", userController.userEdit);
+
 
 module.exports = router;
