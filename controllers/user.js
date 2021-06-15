@@ -56,10 +56,6 @@ module.exports = {
         where: { id: req.body.id },
       }
     );
-    if (!username || !profileImage || !statusMessage) {
-      res.status(400).send({ message: "변경사항이 없습니다." });
-    } else {
-      res.status(200).send(userInfo);
-    }
+    res.status(200).send(userInfo);
   },
 };

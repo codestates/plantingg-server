@@ -14,10 +14,10 @@ module.exports = {
       res.status(400).send({ message: "내용을 입력하세요." });
     }
     const uploadPost = await Post.create({
+      userId: req.currentUserId,
       content,
       image,
       tag,
-      currentUserId: req.currentUserId,
     });
     res.status(200).send(uploadPost);
   },
@@ -26,10 +26,10 @@ module.exports = {
     const { content, image, tag } = req.body;
     const updatePost = await Post.update(
       {
+        userId: req.currentUserId,
         content,
         image,
         tag,
-        currentUserId: req.currentUserId,
       },
       {
         where: { id: req.body.id },

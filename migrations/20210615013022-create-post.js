@@ -11,10 +11,10 @@ module.exports = {
       userId: {
         type: Sequelize.STRING
       },
-      image: {
+      content: {
         type: Sequelize.STRING
       },
-      content: {
+      image: {
         type: Sequelize.STRING
       },
       tag: {
