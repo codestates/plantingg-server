@@ -11,11 +11,20 @@ const port = process.env.PORT ?? 4000;
 const app = express();
 
 // express 미들웨어 설정
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(
+  express.json({
+    limit: "50mb",
+  })
+);
+app.use(
+  express.urlencoded({
+    limit: "50mb",
+    extended: false,
+  })
+);
 app.use(
   cors({
-    origin: true,
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
@@ -30,7 +39,7 @@ const postRouter = require("./routes/post");
 const plantRouter = require("./routes/plant");
 
 app.get("/", (req, res) => {
-  res.send("GET request to the homepage");
+  return res.send("GET request to the homepage");
 });
 
 app.use("/user", userRouter);

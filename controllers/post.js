@@ -10,16 +10,17 @@ module.exports = {
 
   create: async (req, res) => {
     const { content, image, tag } = req.body;
-    if (!content || !image || !tag) {
-      res.status(400).send({ message: "내용을 입력하세요." });
+    if (!content) {
+      return res.status(400).send({ message: "내용을 입력하세요." });
     }
+
     const uploadPost = await Post.create({
       userId: req.currentUserId,
       content,
       image,
       tag,
     });
-    res.status(200).send(uploadPost);
+    return res.status(200).send(uploadPost);
   },
 
   update: async (req, res) => {
@@ -35,12 +36,16 @@ module.exports = {
         where: { id: req.body.id },
       }
     );
-    res.status(200).send(updatePost);
+    return res.status(200).send(updatePost);
   },
 
   delete: async (req, res) => {
+    const { id } = req.body;
     await Post.destroy({
-      where: { id: req.body.id },
+      where: { id },
     });
+    return res
+      .status(200)
+      .send({ message: `${id}번째 게시물을 삭제했습니다.` });
   },
 };
