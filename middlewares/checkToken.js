@@ -5,12 +5,14 @@ module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    res.status(401).send({ message: "권한이 없습니다." });
+    return res.status(401).send({ message: "권한이 없습니다." });
   } else {
     try {
       const data = jwt.verify(authorization, process.env.ACCESS_SECRET);
       if (data.username !== undefined) {
-        res.status(401).send({ message: "올바르지 않은 인증정보입니다." });
+        return res
+          .status(401)
+          .send({ message: "올바르지 않은 인증정보입니다." });
       }
 
       const userInfo = await User.findOne({
