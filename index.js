@@ -24,7 +24,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://planting.ml",
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
