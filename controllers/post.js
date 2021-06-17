@@ -23,29 +23,29 @@ module.exports = {
     return res.status(200).send(uploadPost);
   },
 
-  update: async (req, res) => {
-    const { content, image, tag } = req.body;
-    const updatePost = await Post.update(
-      {
-        userId: req.currentUserId,
-        content,
-        image,
-        tag,
-      },
-      {
-        where: { id: req.body.id },
-      }
-    );
-    return res.status(200).send(updatePost);
-  },
+  // update: async (req, res) => {
+  //   const { content, image, tag } = req.body;
+  //   const updatePost = await Post.update(
+  //     {
+  //       userId: req.currentUserId,
+  //       content,
+  //       image,
+  //       tag,
+  //     },
+  //     {
+  //       where: { id: req.body.id },
+  //     }
+  //   );
+  //   return res.status(200).send(updatePost);
+  // },
 
-  delete: async (req, res) => {
-    const { id } = req.body;
-    await Post.destroy({
-      where: { id },
-    });
-    return res
-      .status(200)
-      .send({ message: `${id}번째 게시물을 삭제했습니다.` });
-  },
+  // delete: async (req, res) => {
+  //   const { id } = req.body;
+  //   await Post.destroy({
+  //     where: { id },
+  //   });
+  //   return res
+  //     .status(200)
+  //     .send({ message: `${id}번째 게시물을 삭제했습니다.` });
+  // },
 };
